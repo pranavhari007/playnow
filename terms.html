@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal & Contact – PlayNow</title>
+  <meta name="description" content="PlayNow Terms & Conditions, Privacy Policy, and Contact information.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Page Hero */
+    .page-hero {
+      padding: 160px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      margin-bottom: 20px;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .hero-glow-sm {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, var(--primary-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    /* Tab Navigation */
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 12px 28px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border-bright);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--bg-dark);
+    }
+
+    /* Tab Panels */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Section Card */
+    .legal-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .legal-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .legal-section:hover::before { opacity: 1; }
+    .legal-section:hover { border-color: rgba(193, 253, 51, 0.15); }
+
+    .section-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(193, 253, 51, 0.1);
+      border: 1px solid rgba(193, 253, 51, 0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .legal-section h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    .legal-section p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    /* Terms Grid */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* Last Updated */
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(193, 253, 51, 0.08);
+      border: 1px solid rgba(193, 253, 51, 0.2);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 48px;
+    }
+
+    /* Agreement Banner */
+    .agreement-banner {
+      background: linear-gradient(135deg, rgba(193, 253, 51, 0.08), rgba(193, 253, 51, 0.03));
+      border: 1px solid rgba(193, 253, 51, 0.2);
+      border-radius: 20px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .agreement-banner .icon { font-size: 2rem; flex-shrink: 0; }
+    .agreement-banner p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .agreement-banner strong { color: var(--primary); }
+
+    /* Privacy list */
+    .privacy-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .privacy-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .privacy-list li .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .terms-grid { grid-template-columns: 1fr; }
+      .legal-section { padding: 28px 24px; }
+      .agreement-banner { flex-direction: column; padding: 24px; }
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 40px;
+      transition: var(--transition-smooth);
+    }
+    .contact-card:hover {
+      border-color: rgba(193, 253, 51, 0.2);
+      transform: translateY(-4px);
+    }
+    .contact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .contact-card h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+    .contact-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .contact-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+    .contact-card a:hover { opacity: 0.8; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border-subtle); background: var(--bg-dark); }
+  </style>
+</head>
+
+<body>
+  <header id="navbar-container"></header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div data-reveal>
+          <span class="badge badge-outline" style="margin-bottom: 24px;">Legal & Support</span>
+        </div>
+        <h1 data-reveal>
+          Transparency &amp; <span class="gradient-text">Trust</span>
+        </h1>
+        <p data-reveal style="margin-top: 16px;">
+          Everything you need to know about how PlayNow works, protects your data, and supports you.
+        </p>
+      </div>
+      <div class="hero-glow-sm"></div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <section style="padding: 0 0 100px;">
+      <div class="container">
+        <div class="tab-nav" data-reveal>
+          <button class="tab-btn active" onclick="switchTab('terms', this)" id="tab-terms">📋 Terms &amp; Conditions</button>
+          <button class="tab-btn" onclick="switchTab('privacy', this)" id="tab-privacy">🔒 Privacy Policy</button>
+          <button class="tab-btn" onclick="switchTab('contact', this)" id="tab-contact">📬 Contact Us</button>
+        </div>
+
+        <!-- ===================== TERMS & CONDITIONS ===================== -->
+        <div id="panel-terms" class="tab-panel active">
+          <div style="margin-bottom: 40px;" data-reveal>
+            <span class="last-updated">📅 Effective Date: April 2026</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Terms &amp; <span class="gradient-text">Conditions</span></h2>
+            <p style="max-width: 680px;">
+              By accessing or using the PlayNow platform, you agree to be bound by the following terms. Please read them carefully before making any booking.
+            </p>
+          </div>
+
+          <div class="terms-grid">
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.05s">
+              <div class="section-icon">✅</div>
+              <h3>1. Booking Confirmation</h3>
+              <p>All bookings made through PlayNow are considered <strong style="color:var(--text-main)">requests</strong> and are confirmed only after verification by the respective venue. You will receive a confirmation notification once your booking is approved.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.1s">
+              <div class="section-icon">💳</div>
+              <h3>2. Payment</h3>
+              <p>Players must pay the venue directly unless otherwise specified at the time of booking. PlayNow does not process or hold payments on behalf of venues unless explicitly stated.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.15s">
+              <div class="section-icon">🔄</div>
+              <h3>3. Cancellation Policy</h3>
+              <p>Cancellations must be communicated at least <strong style="color:var(--text-main)">2 hours before</strong> the scheduled slot time. Late cancellations may not be eligible for a refund. Refund decisions are at the sole discretion of the venue.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.2s">
+              <div class="section-icon">🚫</div>
+              <h3>4. No-Show Policy</h3>
+              <p>If a player fails to arrive at the booked venue within the scheduled time, PlayNow holds no responsibility for issuing refunds. No-shows are subject to each venue's individual policy.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.25s">
+              <div class="section-icon">🏟️</div>
+              <h3>5. Venue Responsibility</h3>
+              <p>PlayNow acts solely as a <strong style="color:var(--text-main)">connector</strong> between players and venues. The physical condition, cleanliness, safety, and availability of courts or turfs are entirely managed by the venue owner.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.3s">
+              <div class="section-icon">⏱️</div>
+              <h3>6. Changes &amp; Delays</h3>
+              <p>PlayNow is not responsible for any last-minute changes, delays, or cancellations initiated by the venue. We recommend contacting the venue directly if you face any such issues on the day of play.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.35s">
+              <div class="section-icon">🤝</div>
+              <h3>7. User Conduct</h3>
+              <p>All players are expected to behave respectfully toward fellow players, venue staff, and the facility. Any misconduct may result in account suspension. PlayNow reserves the right to remove users who violate venue rules.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.4s">
+              <div class="section-icon">⚠️</div>
+              <h3>8. Liability</h3>
+              <p>PlayNow is not liable for any personal injuries, loss of belongings, or property damage that may occur during gameplay or while on venue premises. Players participate at their own risk.</p>
+            </div>
+
+            <div class="legal-section" data-reveal style="transition-delay: 0.45s">
+              <div class="section-icon">📝</div>
+              <h3>9. Updates to Terms</h3>
+              <p>These Terms &amp; Conditions may be updated at any time without prior notice. Continued use of the PlayNow platform after any changes constitutes your acceptance of the revised terms.</p>
+            </div>
+
+          </div>
+
+          <div class="agreement-banner" data-reveal>
+            <div class="icon">📌</div>
+            <p>
+              <strong>By using PlayNow</strong>, you acknowledge that you have read, understood, and agree to be bound by these Terms &amp; Conditions. If you do not agree, please refrain from using our platform.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===================== PRIVACY POLICY ===================== -->
+        <div id="panel-privacy" class="tab-panel">
+          <div style="margin-bottom: 40px;" data-reveal>
+            <span class="last-updated">🔒 Last Updated: April 2026</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Privacy <span class="gradient-text">Policy</span></h2>
+            <p style="max-width: 680px;">
+              At PlayNow, your privacy matters. This policy explains what information we collect and how we use it. We keep it simple because we believe privacy should be straightforward.
+            </p>
+          </div>
+
+          <div class="legal-section" data-reveal style="margin-bottom: 24px;">
+            <div class="section-icon">📋</div>
+            <h3>What We Collect</h3>
+            <p style="margin-bottom: 20px;">We collect only the minimum information needed to facilitate your booking experience:</p>
+            <ul class="privacy-list">
+              <li><span class="dot"></span><span><strong style="color:var(--text-main)">Name</strong> — To identify you and personalise your bookings.</span></li>
+              <li><span class="dot"></span><span><strong style="color:var(--text-main)">Phone Number</strong> — For booking confirmation and venue communication only.</span></li>
+            </ul>
+          </div>
+
+          <div class="legal-section" data-reveal style="margin-bottom: 24px;">
+            <div class="section-icon">🚫</div>
+            <h3>What We Don't Do</h3>
+            <ul class="privacy-list">
+              <li><span class="dot"></span><span>We do <strong style="color:var(--text-main)">not</strong> sell your data to any third party.</span></li>
+              <li><span class="dot"></span><span>We do <strong style="color:var(--text-main)">not</strong> share your information with advertisers or marketing agencies.</span></li>
+              <li><span class="dot"></span><span>We do <strong style="color:var(--text-main)">not</strong> store payment or financial details.</span></li>
+            </ul>
+          </div>
+
+          <div class="legal-section" data-reveal style="margin-bottom: 24px;">
+            <div class="section-icon">🎯</div>
+            <h3>How We Use Your Data</h3>
+            <ul class="privacy-list">
+              <li><span class="dot"></span><span>To process and confirm your sports venue bookings.</span></li>
+              <li><span class="dot"></span><span>To notify you of booking status updates and slot reminders.</span></li>
+              <li><span class="dot"></span><span>To improve the PlayNow platform experience over time.</span></li>
+            </ul>
+          </div>
+
+          <div class="legal-section" data-reveal>
+            <div class="section-icon">🔐</div>
+            <h3>Data Security</h3>
+            <p>Your data is stored securely and accessed only by authorised PlayNow systems. We do not retain your data beyond what is necessary for operational purposes. For any data concerns, feel free to contact us.</p>
+          </div>
+
+          <div class="agreement-banner" data-reveal>
+            <div class="icon">🔒</div>
+            <p>
+              <strong>Simple promise:</strong> We collect your <strong>name and phone number</strong> only to make your booking work. We do not share your data with anyone. That's it.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===================== CONTACT ===================== -->
+        <div id="panel-contact" class="tab-panel">
+          <div style="margin-bottom: 48px;" data-reveal>
+            <span class="last-updated">📬 We're here to help</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Get in <span class="gradient-text">Touch</span></h2>
+            <p style="max-width: 620px;">
+              Have a question, issue, or feedback? Reach out to the PlayNow team and we'll get back to you as soon as possible.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Contact Info Cards -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+
+              <div class="contact-card" data-reveal style="transition-delay: 0.1s">
+                <div class="icon">📧</div>
+                <h3>Email Us</h3>
+                <p>For general enquiries, booking issues, or partnerships.</p>
+                <a href="mailto:support@playnow.in">support@playnow.in</a>
+              </div>
+
+              <div class="contact-card" data-reveal style="transition-delay: 0.2s">
+                <div class="icon">📱</div>
+                <h3>Social Media</h3>
+                <p>Follow us for updates, highlights, and announcements.</p>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+                  <a href="https://www.instagram.com/play_now.in" target="_blank">Instagram → @play_now.in</a>
+                  <a href="https://www.youtube.com/@PlayNow_Sportsplatform" target="_blank">YouTube → PlayNow Sports</a>
+                </div>
+              </div>
+
+              <div class="contact-card" data-reveal style="transition-delay: 0.3s">
+                <div class="icon">📍</div>
+                <h3>Based In</h3>
+                <p>Trichy, Tamil Nadu, India.</p>
+                <span style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">Serving across Tamil Nadu 🏏</span>
+              </div>
+
+            </div>
+
+            <!-- Contact Form -->
+            <div class="legal-section" data-reveal style="transition-delay: 0.2s">
+              <div class="section-icon">✉️</div>
+              <h3 style="margin-bottom: 24px;">Send a Message</h3>
+              <form class="contact-form" onsubmit="handleContact(event)" id="contact-form">
+                <div class="form-row">
+                  <div>
+                    <label for="contact-name">Your Name</label>
+                    <input type="text" id="contact-name" placeholder="e.g. Arjun Kumar" required>
+                  </div>
+                  <div>
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" placeholder="+91 98765 43210">
+                  </div>
+                </div>
+                <div>
+                  <label for="contact-subject">Subject</label>
+                  <select id="contact-subject">
+                    <option value="">Select a topic…</option>
+                    <option>Booking Issue</option>
+                    <option>Venue Partnership</option>
+                    <option>Account Support</option>
+                    <option>General Enquiry</option>
+                    <option>Feedback</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" placeholder="Tell us how we can help you…" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;" id="contact-submit">
+                  Send Message →
+                </button>
+                <div id="contact-success" style="display:none; text-align:center; padding: 16px; background: rgba(193,253,51,0.08); border: 1px solid rgba(193,253,51,0.3); border-radius: 14px; color: var(--primary); font-weight: 700; font-size: 0.9rem;">
+                  ✅ Message sent! We'll get back to you soon.
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="section-padding">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px;">
+        <div>
+          <a href="index.html" class="logo" style="margin-bottom: 24px;">PLAY<span>NOW</span></a>
+          <p style="max-width: 300px; line-height: 1.8;">Revolutionizing the way sports enthusiasts connect with venues. The ultimate platform for the modern athlete.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 24px; font-size: 0.9rem; color: var(--text-main);">Platform</h4>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="Arenas.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Browse Arenas</a>
+            <a href="booking.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">My Bookings</a>
+            <a href="owner.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Partner Portal</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 24px; font-size: 0.9rem; color: var(--text-main);">Company</h4>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">About Us</a>
+            <a href="terms.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 24px; font-size: 0.9rem; color: var(--text-main);">Legal</h4>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="terms.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Terms &amp; Conditions</a>
+            <a href="terms.html" onclick="switchTabAndGo('privacy')" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 40px;">
+        <p style="font-size: 0.85rem;">&copy; 2026 Play Now. Global Sports Platform.</p>
+        <div style="display: flex; gap: 24px;">
+          <a href="https://www.instagram.com/play_now.in" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Instagram</a>
+          <a href="https://www.youtube.com/@PlayNow_Sportsplatform" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    function switchTab(name, btn) {
+      // hide all panels
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+      btn.classList.add('active');
+      // re-trigger reveals
+      document.querySelectorAll('#panel-' + name + ' [data-reveal]').forEach(el => {
+        el.classList.remove('revealed');
+        setTimeout(() => el.classList.add('revealed'), 50);
+      });
+    }
+
+    // For footer links — open privacy tab
+    function switchTabAndGo(tab) {
+      const btn = document.getElementById('tab-' + tab);
+      if (btn) switchTab(tab, btn);
+    }
+
+    // Contact form mock submit
+    function handleContact(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+      }, 1000);
+    }
+
+    // Check URL hash to open correct tab on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash === '#privacy') switchTab('privacy', document.getElementById('tab-privacy'));
+      else if (hash === '#contact') switchTab('contact', document.getElementById('tab-contact'));
+    });
+  </script>
+</body>
+
+</html>
